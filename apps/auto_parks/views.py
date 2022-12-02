@@ -1,11 +1,13 @@
 from rest_framework import status
-from rest_framework.generics import ListCreateAPIView, GenericAPIView
+from rest_framework.generics import GenericAPIView, ListCreateAPIView
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
+
+from apps.cars.models import CarModel
+from apps.cars.serializers import CarSerializer
 
 from .models import AutoParkModel
 from .serializers import AutoParkSerializer
-from apps.cars.serializers import CarSerializer
-from apps.cars.models import CarModel
 
 
 class AutoParkListCreateView(ListCreateAPIView):
@@ -15,6 +17,11 @@ class AutoParkListCreateView(ListCreateAPIView):
 
 class CarListCreateView(GenericAPIView):
     queryset = AutoParkModel.objects.all()
+
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            return AllowAny(),
+        return IsAuthenticated(),
 
     def get(self, *args, **kwargs):
         pk = kwargs.get('pk')
