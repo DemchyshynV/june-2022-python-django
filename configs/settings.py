@@ -29,6 +29,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://localhost:4200",
 ]
+
+AUTH_USER_MODEL = 'users.UserModel'
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,6 +40,7 @@ INSTALLED_APPS = [
     'corsheaders',
 
     # my_apps
+    'apps.users',
     'apps.cars',
     'apps.auto_parks'
 ]

@@ -1,7 +1,13 @@
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
+
 from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView
 
-from .serializers import CarSerializer
 from .models import CarModel
+from .serializers import CarSerializer
+
+# UserModel:User = get_user_model()
+# UserModel.objects.filter(userna)
 
 
 class CarListCreateView(ListAPIView):
