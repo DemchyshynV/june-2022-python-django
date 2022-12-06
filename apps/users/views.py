@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from django.contrib.auth import get_user_model
 
 from rest_framework import status
-from rest_framework.generics import CreateAPIView, GenericAPIView, ListCreateAPIView
+from rest_framework.generics import CreateAPIView, GenericAPIView, ListCreateAPIView, UpdateAPIView
 from rest_framework.permissions import AllowAny, IsAdminUser
 from rest_framework.response import Response
 
@@ -11,7 +11,7 @@ from apps.users.models import UserModel as User
 
 from ..auto_parks.serializers import AutoParkSerializer
 from .permissions import IsSuperUser
-from .serializers import UserSerializer
+from .serializers import AvatarSerializer, UserSerializer
 
 UserModel: User = get_user_model()
 
@@ -98,3 +98,12 @@ class AutoParkListCreateView(GenericAPIView):
         serializer.save(user=user)
         serializer = UserSerializer(user)
         return Response(serializer.data, status.HTTP_201_CREATED)
+
+class AddAvatarView(UpdateAPIView):
+    serializer_class = AvatarSerializer
+    http_method_names = ('patch',)
+
+    def get_object(self):
+        return self.request.user.profile
+
+

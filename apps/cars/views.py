@@ -21,9 +21,7 @@ class CarListCreateView(ListAPIView):
 
     def get_queryset(self):
         query = self.request.query_params.dict()
-
         queryset = super().get_queryset()
-
         if (year := query.get('lt_year')) and year.isdigit():
             queryset = queryset.filter(year__lt=year)
         if (auto_park_id := query.get('auto_park_id')) and auto_park_id.isdigit():
