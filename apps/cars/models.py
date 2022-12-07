@@ -4,6 +4,7 @@ from django.db import models
 from apps.auto_parks.models import AutoParkModel
 
 from .managers import CarManager
+from .service import upload_car_photo
 
 
 class CarModel(models.Model):
@@ -24,3 +25,10 @@ class CarModel(models.Model):
     objects = models.Manager()
     my_func = CarManager()
 
+
+class CarPhotoModel(models.Model):
+    class Meta:
+        db_table = 'cars_photo'
+
+    photo = models.ImageField(upload_to=upload_car_photo)
+    car = models.ForeignKey(CarModel, on_delete=models.CASCADE, related_name='photos')
