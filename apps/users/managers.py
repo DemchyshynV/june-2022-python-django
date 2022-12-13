@@ -1,5 +1,7 @@
 from django.contrib.auth.base_user import BaseUserManager
 
+from rest_framework.generics import get_object_or_404
+
 
 class UserManager(BaseUserManager):
     def create_user(self, email, password, **extra_kwargs):
@@ -25,3 +27,6 @@ class UserManager(BaseUserManager):
 
         user = self.create_user(email, password, **extra_kwargs)
         return user
+
+    def find_by_email(self, email):
+        return get_object_or_404(self, email=email)
