@@ -2,6 +2,7 @@ from rest_framework import status
 from rest_framework.generics import GenericAPIView, ListAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.response import Response
 
+from .filters import CarFilter
 from .models import CarModel
 from .serializers import CarPhotoSerializer, CarSerializer
 
@@ -9,6 +10,7 @@ from .serializers import CarPhotoSerializer, CarSerializer
 class CarListCreateView(ListAPIView):
     queryset = CarModel.objects.all()
     serializer_class = CarSerializer
+    filterset_class = CarFilter
 
     def get_queryset(self):
         query = self.request.query_params.dict()
