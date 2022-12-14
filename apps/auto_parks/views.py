@@ -10,12 +10,14 @@ from core.pagination.page_pagination import PagePagination
 
 from .models import AutoParkModel
 from .serializers import AutoParkSerializer
+from .filters import AutoParkFilters
 
 
 class AutoParkListCreateView(ListAPIView):
     queryset = AutoParkModel.objects.all()
     serializer_class = AutoParkSerializer
     pagination_class = PagePagination
+    filterset_class = AutoParkFilters
 
 
 class CarListCreateView(GenericAPIView):

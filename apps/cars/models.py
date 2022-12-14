@@ -15,6 +15,7 @@ class CarModel(models.Model):
         V.MinLengthValidator(2), V.MaxLengthValidator(20)
     ])
     year = models.IntegerField(default=2000)
+    price = models.IntegerField()
     seats = models.IntegerField()
     body = models.CharField(max_length=20, blank=True)
     engine_volume = models.FloatField()
