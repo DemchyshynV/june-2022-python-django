@@ -1,5 +1,6 @@
 from rest_framework import status
 from rest_framework.generics import GenericAPIView, ListAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
 from .filters import CarFilter
@@ -10,6 +11,7 @@ from .serializers import CarPhotoSerializer, CarSerializer
 class CarListCreateView(ListAPIView):
     queryset = CarModel.objects.all()
     serializer_class = CarSerializer
+    permission_classes = (AllowAny,)
     filterset_class = CarFilter
 
     def get_queryset(self):

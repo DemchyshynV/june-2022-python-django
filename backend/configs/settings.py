@@ -27,10 +27,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG') == 'True'
 ALLOWED_HOSTS = ['*']
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://localhost:4200",
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000",
+#     "http://localhost:4200",
+# ]
 
 AUTH_USER_MODEL = 'users.UserModel'
 # Application definition
@@ -39,11 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.staticfiles',
-    'corsheaders',
+    # 'corsheaders',
     'rest_framework_simplejwt.token_blacklist',
     'django_filters',
 
     # my_apps
+    'core',
     'apps.users',
     'apps.cars',
     'apps.auto_parks'
@@ -51,7 +52,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
+    # "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
 ]
 
