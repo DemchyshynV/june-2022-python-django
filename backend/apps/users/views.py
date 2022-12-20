@@ -72,13 +72,15 @@ class UserToAdminView(SuperUserTools):
 
 
 class AdminToUserView(SuperUserTools):
+    serializer_class = UserSerializer
+
     def patch(self, *args, **kwargs):
         user: User = self.get_object()
 
         if user.is_staff:
             user.is_staff = False
             user.save()
-        serializer = UserSerializer(user)
+        serializer = self.serializer_class(user)
         return Response(serializer.data, status.HTTP_200_OK)
 
 
@@ -97,10 +99,11 @@ class AutoParkListCreateView(GenericAPIView):
         serializer = AutoParkSerializer(data=data)
         serializer.is_valid(raise_exception=True)
         user = self.get_object()
-        auto_park:AutoParkModel = serializer.save()
+        auto_park: AutoParkModel = serializer.save()
         auto_park.users.add(user)
         serializer = UserSerializer(user)
         return Response(serializer.data, status.HTTP_201_CREATED)
+
 
 class AddAvatarView(UpdateAPIView):
     serializer_class = AvatarSerializer
@@ -108,5 +111,3 @@ class AddAvatarView(UpdateAPIView):
 
     def get_object(self):
         return self.request.user.profile
-
-

@@ -9,6 +9,9 @@ from .serializers import CarPhotoSerializer, CarSerializer
 
 
 class CarListCreateView(ListAPIView):
+    """
+    List ALL Cars
+    """
     queryset = CarModel.objects.all()
     serializer_class = CarSerializer
     permission_classes = (AllowAny,)
@@ -25,6 +28,16 @@ class CarListCreateView(ListAPIView):
 
 
 class CarRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
+    """
+    get:
+        Get car by id
+    patch:
+        Partial update car by id
+    put:
+        Full update car by id
+    delete:
+        Delete car by id
+    """
     queryset = CarModel.objects.all()
     serializer_class = CarSerializer
 

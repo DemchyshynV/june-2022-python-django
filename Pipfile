@@ -4,12 +4,15 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-djangorestframework = "*"
+djangorestframework = "3.13.1"
 mysqlclient = "*"
 django-cors-headers = "*"
 djangorestframework-simplejwt = "*"
 pillow = "*"
 django-filter = "*"
+drf-yasg = "*"
+celery = {extras = ["redis"], version = "*"}
+django-celery-beat = "*"
 
 [dev-packages]
 isort = "*"
