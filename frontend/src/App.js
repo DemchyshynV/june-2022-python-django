@@ -5,7 +5,7 @@ const App = () => {
   const [cars, setCars] = useState([])
 
   useEffect(() => {
-    axios.get('/api/cars').then(value => setCars(value.data))
+    axios.get('/api/v1/cars').then(value => setCars(value.data))
   }, [])
 
   return (

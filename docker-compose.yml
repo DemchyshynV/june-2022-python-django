@@ -30,7 +30,7 @@ services:
       - "80:80"
     restart: on-failure
     volumes:
-      - ./client:/usr/share/nginx/html
+      - ./client:/usr/share/nginx/html:rw
       - ./backend/static:/usr/share/nginx/html/doc
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
 
@@ -47,6 +47,6 @@ services:
       - .env
     restart: on-failure
     command: >
-      sh -c "celery -A configs worker -l info -B"
-#      sh -c "celery -A configs worker -l info"
+      sh -c "celery -A configs worker -l info"
+#      sh -c "celery -A configs worker -l info -B"
 
