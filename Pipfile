@@ -13,6 +13,7 @@ django-filter = "*"
 drf-yasg = "*"
 celery = {extras = ["redis"], version = "*"}
 django-celery-beat = "*"
+gunicorn = "*"
 
 [dev-packages]
 isort = "*"

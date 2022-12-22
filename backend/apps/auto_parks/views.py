@@ -1,19 +1,19 @@
+from core.pagination.page_pagination import PagePagination
+
 from rest_framework import status
-from rest_framework.generics import GenericAPIView, ListAPIView
+from rest_framework.generics import GenericAPIView, ListCreateAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
 from apps.cars.models import CarModel
 from apps.cars.serializers import CarSerializer
 
-from core.pagination.page_pagination import PagePagination
-
+from .filters import AutoParkFilters
 from .models import AutoParkModel
 from .serializers import AutoParkSerializer
-from .filters import AutoParkFilters
 
 
-class AutoParkListCreateView(ListAPIView):
+class AutoParkListCreateView(ListCreateAPIView):
     queryset = AutoParkModel.objects.all()
     serializer_class = AutoParkSerializer
     pagination_class = PagePagination

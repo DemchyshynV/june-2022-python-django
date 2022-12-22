@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG') == 'True'
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['autopark-env.eba-k3a39xhh.us-east-1.elasticbeanstalk.com']
 
 # CORS_ALLOWED_ORIGINS = [
 #     "http://localhost:3000",
